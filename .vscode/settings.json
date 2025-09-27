@@ -1,0 +1,15 @@
+{
+  // Point VS Code at ArcGIS Pro’s conda
+  "python.condaPath": "C:\\Program Files\\ArcGIS\\Pro\\bin\\Python\\Scripts\\conda.exe",
+
+  // Make the integrated terminal auto-activate the selected env
+  "python.terminal.activateEnvironment": true,
+
+  // Quiet the Python extension logs
+  "python.logging.level": "warning",
+
+  // Turn off auto test discovery unless you need it
+  "python.testing.autoTestDiscoverOnSaveEnabled": false,
+  "python.testing.pytestEnabled": false,
+  "python.testing.unittestEnabled": false
+}
