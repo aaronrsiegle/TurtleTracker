@@ -17,18 +17,18 @@ lineString = "20616	29051	7/3/2003 9:13	3	66	33.898	-77.958	27.369	-46.309	6	0	-
 lineData = lineString
   
 # Assign variables to specfic items in the list
-record_id = lineData[]   # ARGOS tracking record ID
-obs_date = lineData[]   # Observation date
-ob_lc = lineData[]       # Observation Location Class
-obs_lat = lineData[]     # Observation Latitude
-obs_lon = lineData[]     # Observation Longitude
+record_id = lineData[0]  # ARGOS tracking record ID
+obs_date = lineData[2]  # Observation date
+ob_lc = lineData[4]      # Observation Location Class
+obs_lat = lineData[6]    # Observation Latitude
+obs_lon = lineData[7]  # Observation Longitude
   
 # Print information to the use
 print (f"Record {record_id} indicates Sara was seen at {obs_lat}N and {obs_lon}W on {obs_date}")
 
 #Create a variable pointing to the data file
 # placing an r in front of a file path allows you have the slashes the same way as they are in file explorer
-file_name = './data/raw/Sara.txt'
+file_name = r"V:\TurtleTracking\TurtleTracker\Data\Raw\Sara.txt"
 
 #Create a file object from the file
 file_object = open(file_name,'r')
@@ -40,17 +40,21 @@ line_list = file_object.readlines()
 file_object.close()
 
 #Pretend we read one line of data from the file
-lineString = line_list[200]
+for lineString in line_list:
+    # Check if line is a data line 
+    if lineString[0] in ("#", "u"):
+        continue 
+    
 
-#Split the string into a list of data items
-lineData = lineString.split()
+    #Split the string into a list of data items
+    lineData = lineString.split()
 
-#Extract items in list into variables
-record_id = lineData[0]
-obs_date = lineData[2]
-obs_lc = lineData[4]
-obs_lat = lineData[6]
-obs_lon = lineData[7]
+    #Extract items in list into variables
+    record_id = lineData[0]
+    obs_date = lineData[2]
+    obs_lc = lineData[4]
+    obs_lat = lineData[6]
+    obs_lon = lineData[7]
 
-#Print the location of sara
-print(f"Record {record_id} indicates Sara was seen at lat:{obs_lat},lon:{obs_lon} on {obs_date}")
+    #Print the location of sara
+    print(f"Record {record_id} indicates Sara was seen at lat:{obs_lat},lon:{obs_lon} on {obs_date}")
