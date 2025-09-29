@@ -28,19 +28,19 @@ print (f"Record {record_id} indicates Sara was seen at {obs_lat}N and {obs_lon}W
 
 #Create a variable pointing to the data file
 # placing an r in front of a file path allows you have the slashes the same way as they are in file explorer
-file_name = './data/raw/sara.txt█'
+file_name = './data/raw/Sara.txt'
 
 #Create a file object from the file
-file_object = open(█,'r')
+file_object = open(file_name,'r')
 
 #Read contents of file into a list
-line_list = file_object.█
+line_list = file_object.readlines()
 
 #Close the file
-file_object.█
+file_object.close()
 
 #Pretend we read one line of data from the file
-lineString = line_list[█]
+lineString = line_list[200]
 
 #Split the string into a list of data items
 lineData = lineString.split()
