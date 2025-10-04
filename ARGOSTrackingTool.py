@@ -34,20 +34,18 @@ file_name = r"V:\TurtleTracking\TurtleTracker\Data\Raw\Sara.txt"
 file_object = open(file_name,'r')
 
 #Read contents of file into a list
-line_list = file_object.readlines()
-
-#Close the file
-file_object.close()
+lineString = file_object.readlines()
 
 #Pretend we read one line of data from the file
-for lineString in line_list:
+while lineString: 
     # Check if line is a data line 
     if lineString[0] in ("#", "u"):
+        lineString = file_object.readline()
         continue 
     
 
     #Split the string into a list of data items
-    lineData = lineString.split()
+    #lineData = lineString.split()
 
     #Extract items in list into variables
     record_id = lineData[0]
@@ -58,3 +56,7 @@ for lineString in line_list:
 
     #Print the location of sara
     print(f"Record {record_id} indicates Sara was seen at lat:{obs_lat},lon:{obs_lon} on {obs_date}")
+
+    # #%% - this is the way to create code chunks in VS Code 
+    # Read next line 
+    lineString = file_object.readline()
