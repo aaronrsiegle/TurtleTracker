@@ -9,22 +9,8 @@
 # Date:   Fall 2025
 #--------------------------------------------------------------
 
-# Parse Data
-# Copy and paste a line of data as the lineString variable value
-lineString = "20616	29051	7/3/2003 9:13	3	66	33.898	-77.958	27.369	-46.309	6	0	-126	529	3	401 651134.7	0"
-  
-# Use the split command to parse the items in lineString into a list object
-lineData = lineString
-  
-# Assign variables to specfic items in the list
-record_id = lineData[0]  # ARGOS tracking record ID
-obs_date = lineData[2]  # Observation date
-ob_lc = lineData[4]      # Observation Location Class
-obs_lat = lineData[6]    # Observation Latitude
-obs_lon = lineData[7]  # Observation Longitude
-  
-# Print information to the use
-print (f"Record {record_id} indicates Sara was seen at {obs_lat}N and {obs_lon}W on {obs_date}")
+# Ask user for a date 
+user_date = input ("Enter a date: ")
 
 #Create a variable pointing to the data file
 # placing an r in front of a file path allows you have the slashes the same way as they are in file explorer
@@ -68,9 +54,17 @@ for lineString in line_list:
         date_dict[record_id] = obs_date
         location_dict[record_id] = (obs_lat, obs_lon)
 
-    #Print the location of sara
-    # print(f"Record {record_id} indicates Sara was seen at lat:{obs_lat},lon:{obs_lon} on {obs_date}")
+#Initialize key list
+keys = []
 
-    # #%% - this is the way to create code chunks in VS Code 
-    # Read next line 
-    lineString = file_object.readline()
+#Loop through items in date_dict
+for key, value in date_dict.items():
+    if value == user_date:
+        keys.append(key)
+
+#Loop through keys and report locations
+for key in keys: 
+    location = location_dict[key]
+    lat = location[0]
+    lng = location[1]
+    print(f"On {user_date}, Sara the turtle was seen at {lat} Lat, {lng} Lng.")
